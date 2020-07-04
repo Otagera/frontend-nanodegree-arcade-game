@@ -79,7 +79,7 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        checkCollisions();
     }
 
     /* This is called by the update function and loops through all of the
@@ -94,6 +94,26 @@ var Engine = (function(global) {
             enemy.update(dt);
         });
         player.update();
+    }
+
+    /* This is called by the update function and loops through all of the
+     * objects within your allEnemies array as defined in app.js and checks
+     * if any is at the same position as the player at that time.
+     * It will then call the update function for your
+     * player object. These update methods should focus purely on updating
+     * the data/properties related to the object. Do your drawing in your
+     * render methods.
+     */
+    function checkCollisions() {
+        //
+        allEnemies.forEach(function(enemy) {
+            if(player.x == enemy.x  && player.y == enemy.y){
+                console.log(enemy);
+                console.log(player);
+                player.x = 403;
+                player.y = 383;
+            }
+        });
     }
 
     /* This function initially draws the "game level", it will then call
